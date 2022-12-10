@@ -2,8 +2,8 @@
 
 class Team
 {
-    protected $name;
-    protected $members = [];
+    protected string $name;
+    protected array $members = [];
 
     public function __construct($name, $members = [])
     {
@@ -42,11 +42,24 @@ class Team
     }
 }
 
-$acme = Team::start('Acme', [
-    'John',
-    'Alex'
-]);
+class Member
+{
+    protected string $name;
 
-$acme->add('Joe');
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+
+    public function lastViewed()
+    {
+
+    }
+}
+
+$acme = Team::start('Acme', [
+    new Member('John'),
+    new Member('Alex'),
+]);
 
 var_dump($acme->members());
