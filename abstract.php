@@ -1,37 +1,32 @@
 <?php
 
-class FirstThousandPionts
+abstract class AchievementType
 {
     public function name()
     {
-        return 'First Thousands Points';
+        $class = (new ReflectionClass($this))->getShortName();
+
+        return trim(preg_replace('/[A-Z]/', ' $0', $class));
     }
 
     public function icon()
     {
-        return 'first-thousands-points.png';
-    }
-
-    public function qualifier($user)
-    {
-        
+        return strtolower(str_replace(' ', '-', $this->name())) . '.png';
     }
 }
 
-class FirstBestAnswer
+class FirstThousandPoints extends AchievementType
 {
-    public function name()
-    {
-        return 'First Best Answer';
-    }
-
-    public function icon()
-    {
-        return 'first-best-answer.png';
-    }
-
     public function qualifier($user)
     {
 
     }
 }
+
+class ReachTop50 extends AchievementType
+{
+}
+
+$achievement = new ReachTop50();
+
+echo $achievement->icon();
