@@ -2,9 +2,9 @@
 
 class Subscription
 {
-    private StripeGateway $gateway;
+    private Gateway $gateway;
 
-    public function __construct(StripeGateway $gateway)
+    public function __construct(Gateway $gateway)
     {
 
         $this->gateway = $gateway;
@@ -17,7 +17,8 @@ class Subscription
 
     public function cancel()
     {
-        $this->gateway->findStripeCustomer();
+        $customer = $this->gateway->findCustomer();
+        $customerSubscription = $this->gateway->findSubscriptionByCustomer($customer);
     }
 
     public function invoice()
@@ -31,15 +32,37 @@ class Subscription
     }
 }
 
-class StripeGateway
+interface Gateway
 {
-    public function findStripeCustomer()
+    public function findCustomer();
+
+    public function findSubscriptionByCustomer();
+}
+
+class StripeGateway implements Gateway
+{
+    public function findCustomer()
     {
         
     }
 
-    public function findStripeSubsctiptionByCustomer()
+    public function findSubscriptionByCustomer()
     {
 
     }
 }
+
+class BraintreeGateway implements Gateway
+{
+    public function findCustomer()
+    {
+
+    }
+
+    public function findSubscriptionByCustomer()
+    {
+
+    }
+}
+
+(new Subscription(new BraintreeGateway()));
