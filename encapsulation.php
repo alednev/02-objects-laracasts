@@ -2,32 +2,38 @@
 
 class TennisMatch
 {
-    protected $playerOne;
+    protected string $playerOne;
 
-    public function score()
+    public function score() : array
     {
-        // is there a winner
-        // does someone have and advantage
-        // are they in deuce
+        return [
+            $this->hasWinner(),
+            $this->hasAdvantage(),
+            $this->inDeuce(),
+        ];
     }
 
-    protected function hasWinner()
-    {
-
-    }
-
-    protected function hasAgvantage()
+    protected function hasWinner() : void
     {
 
     }
 
-    protected function inDeuce
+    protected function hasAdvantage() : void
     {
 
     }
 
-    public function playerOne()
+    protected function inDeuce() : void
+    {
+
+    }
+
+    public function playerOne() : string
     {
         return $this->playerOne;
     }
 }
+
+$match = new TennisMatch();
+
+var_dump($match->score(), $match->playerOne());
