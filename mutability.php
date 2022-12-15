@@ -12,12 +12,28 @@ class Age
 
         $this->age = $age;
     }
+
+    public function increment()
+    {
+        $this->age += 1;
+    }
+
+    public function get()
+    {
+        return $this->age;
+    }
 }
 
-function register(string $name, Age $age)
-{
-}
+$age = new Age(35);
 
-$age = new Age(36);
+$age->increment();
 
-register('John Dow', $age);
+var_dump($age->get());
+
+//function register(string $name, Age $age)
+//{
+//}
+
+//$age = new Age(36);
+//
+//register('John Dow', $age);
