@@ -24,7 +24,7 @@ class Team
 
     public function add(Member $member)
     {
-        if (count($this->members)) {
+        if (count($this->members) === 3) {
             throw TeamException::fromTooManyMembers();
         }
         $this->members[] = $member;
